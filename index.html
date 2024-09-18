@@ -4,216 +4,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Organizational Structure</title>
+    <title>Organizational Tree Chart</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            color: #333;
             margin: 0;
             padding: 20px;
         }
 
-        .container {
-            text-align: center;
-            margin: 20px auto;
-            max-width: 1200px;
-        }
-
         h1 {
+            text-align: center;
             color: #4a90e2;
         }
 
-        .box {
-            padding: 20px;
-            margin: 20px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            display: inline-block;
-            vertical-align: top;
+        .tree {
             width: 100%;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-
-        .department {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
         }
 
-        .person {
-            cursor: pointer;
-            color: #4a90e2;
-            text-decoration: underline;
+        .tree ul {
+            padding-top: 20px;
+            position: relative;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
         }
 
-        .person:hover {
-            color: #d35400;
+        .tree li {
+            float: left;
+            text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 20px 5px 0 5px;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+        }
+
+        /* Lines connecting the tree */
+        .tree li::before, .tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+
+        .tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #ccc;
+        }
+
+        .tree li:only-child::before, .tree li:only-child::after {
+            display: none;
+        }
+
+        .tree li:only-child {
+            padding-top: 0;
+        }
+
+        /* Vertical line */
+        .tree li li::before {
+            border-right: 2px solid #ccc;
+            border-top: none;
+            height: 100%;
+            top: 0;
+            right: 50%;
+        }
+
+        .tree li li::after {
+            border-left: 2px solid #ccc;
+            border-top: none;
+            height: 100%;
+            top: 0;
+            left: 50%;
+        }
+
+        .tree li a {
+            border: 2px solid #ccc;
+            padding: 10px;
+            text-decoration: none;
+            color: #4a90e2;
+            font-size: 14px;
+            display: inline-block;
+            border-radius: 5px;
+            transition: all 0.5s;
+        }
+
+        .tree li a:hover {
+            background: #f4f4f4;
+            color: #000;
+            border: 2px solid #4a90e2;
         }
 
         .details {
             display: none;
-            text-align: left;
-            margin-top: 10px;
+            font-size: 12px;
+            color: #333;
         }
 
         .details p {
             margin: 5px 0;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 5px 0;
-        }
-
-        .branch-coordinator {
-            margin-left: 20px;
-        }
-
-        .title {
-            color: #4a90e2;
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
+    <h1>Organizational Tree Chart</h1>
 
-    <div class="container">
-        <h1>Interactive Organizational Structure</h1>
-
-        <!-- Shareholders & Managing Partners -->
-        <div class="box">
-            <h2>Shareholders & Managing Partners</h2>
-            <ul>
-                <li>Mohamed Mansour</li>
-                <li>Mohamed Farouk</li>
-                <li>Ahmed Tarek Khalil</li>
-                <li>Abdullah Salam</li>
-                <li>Ahmed Al-Seweidy</li>
-                <li>Rafeek Mohamed Rafeek</li>
-                <li>Ahmed Hassan Kanawy</li>
-            </ul>
-        </div>
-
-        <!-- CEO Section -->
-        <div class="department">
-            <h3 class="title">CEO: Ahmed Hassan Kenawy</h3>
-            <p class="person" onclick="toggleDetails('ceo')">Phone: 1062101316 - Email: a.kenawy@sal7lyy.net</p>
-            <div id="ceo" class="details">
-                <p>CEO of the company, overseeing all operations and departments.</p>
-            </div>
-        </div>
-
-        <!-- Academy Supervisor -->
-        <div class="department">
-            <h3 class="title">Academy Supervisor: Mahmoud Dahy</h3>
-            <p class="person" onclick="toggleDetails('academy-supervisor')">Phone: 01064524279 - Email: m.dahy@Sal7lyy.net</p>
-            <div id="academy-supervisor" class="details">
-                <p>Supervises the operations of the Academy, responsible for training and educational programs.</p>
-            </div>
-        </div>
-
-        <!-- CTO Section -->
-        <div class="department">
-            <h3 class="title">CTO: Farouk Omar</h3>
-            <p class="person" onclick="toggleDetails('cto')">Phone: 1145858641 - Email: ***</p>
-            <div id="cto" class="details">
-                <p>Chief Technology Officer responsible for overseeing technology development.</p>
-                <p><strong>Programmer:</strong> Reporting to the CTO.</p>
-            </div>
-        </div>
-
-        <!-- CMO Section -->
-        <div class="department">
-            <h3 class="title">CMO</h3>
-            <p class="person" onclick="toggleDetails('cmo')">Details</p>
-            <div id="cmo" class="details">
-                <h4>Head of Growth: Omar Emad Eldien Ali</h4>
-                <p>Phone: 01012269006 - Email: omeremad30@gmail.com</p>
-                <h4>Marketing Manager: Nesrine Abdelhamide</h4>
-                <p>Phone: 01024855375 - Email: nesrineabdelhamide@gmail.com</p>
-                <h4>Social Media Moderator: Samaa Mohamed Thabet</h4>
-                <p>Phone: 01157931166 - Email: samaamohamed870@gmail.com</p>
-            </div>
-        </div>
-
-        <!-- Sales Representatives -->
-        <div class="department">
-            <h3 class="title">Sales Team</h3>
-            <h4>Supervisor: Shimaa Mohammed Mohammed</h4>
-            <p>Phone: 01116843136 - Email: shimaamohammed20300@gmail.com</p>
-            <h4>Sales Representatives</h4>
-            <ul>
-                <li>Aya Alaaeldin Ahmed - Phone: 01068096519 - Email: ayaalaa12y4@gmail.com</li>
-                <li>Mayar Massoud Mansour Farghaly - Phone: 01101062498 - Email: mayaradel979@gmail.com</li>
-                <li>Reem Hossam Eldin Mohammed Ahmed - Phone: 01026737973 - Email: rh9871930@gmail.com</li>
-                <li>Mayada Ramadan Mohammed Mohammed - Phone: 01026736210 - Email: mayadar095@gmail.com</li>
-            </ul>
-        </div>
-
-        <!-- Public Relations Manager -->
-        <div class="department">
-            <h3 class="title">Public Relation Manager</h3>
-            <p class="person" onclick="toggleDetails('pr')">Details</p>
-            <div id="pr" class="details">
-                <h4>Public Relation Specialist: Mohamed Abdelhamed Hassan</h4>
-                <p>Phone: 01091728976 - Email: ma6251169@gmail.com</p>
-            </div>
-        </div>
-
-        <!-- CHRO Section -->
-        <div class="department">
-            <h3 class="title">CHRO: Eyad Abdelazim Mohamed</h3>
-            <p class="person" onclick="toggleDetails('chro')">Phone: 01552565330 - Email: Eyad_Abdelazim@sal7lyy.net</p>
-            <div id="chro" class="details">
-                <h4>HR Director</h4>
-                <h4>HR Specialist: Mahmoud Adel Dahy</h4>
-                <p>Phone: 01064524279 - Email: m.dahy@Sal7lyy.net</p>
-            </div>
-        </div>
-
-        <!-- CFO Section -->
-        <div class="department">
-            <h3 class="title">CFO</h3>
-            <p class="person" onclick="toggleDetails('cfo')">Details</p>
-            <div id="cfo" class="details">
-                <h4>Finance Director</h4>
-                <h4>Finance Manager: Nadeen Hassan Mousa</h4>
-                <p>Phone: 01008947665 - Email: nadeenhassan.acc@gmail.com</p>
-            </div>
-        </div>
-
-        <!-- COO Section -->
-        <div class="department">
-            <h3 class="title">COO: Rafeek Mohamed Refeek</h3>
-            <p class="person" onclick="toggleDetails('coo')">Details</p>
-            <div id="coo" class="details">
-                <h4>Operation Manager</h4>
-                <h4>Operation Engineers</h4>
+    <div class="tree">
+        <ul>
+            <!-- Shareholders & Managing Partners -->
+            <li>
+                <a href="#" onclick="toggleDetails('ceo')">Shareholders & Managing Partners</a>
                 <ul>
-                    <li>Ahmed Sayed Bader - Phone: 1020348986 - Email: ahmedgentalbadr@gmail.com</li>
-                    <li>Abdelrahman Osama Sayed Ahmed - Phone: 01002369512 - Email: abdelrahmanosama794@gmail.com</li>
+                    <!-- CEO -->
+                    <li>
+                        <a href="#" onclick="toggleDetails('ceo')">CEO: Ahmed Hassan Kenawy</a>
+                        <div id="ceo" class="details">
+                            <p>Phone: 1062101316</p>
+                            <p>Email: a.kenawy@sal7lyy.net</p>
+                        </div>
+                        <ul>
+                            <!-- CTO -->
+                            <li>
+                                <a href="#" onclick="toggleDetails('cto')">CTO: Farouk Omar</a>
+                                <div id="cto" class="details">
+                                    <p>Phone: 1145858641</p>
+                                    <p>Email: ***</p>
+                                </div>
+                                <ul>
+                                    <li><a href="#">Programmer</a></li>
+                                </ul>
+                            </li>
+                            <!-- CMO -->
+                            <li>
+                                <a href="#" onclick="toggleDetails('cmo')">CMO</a>
+                                <div id="cmo" class="details">
+                                    <h4>Head of Growth: Omar Emad Eldien Ali</h4>
+                                    <p>Phone: 01012269006</p>
+                                    <p>Email: omeremad30@gmail.com</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">Marketing Manager: Nesrine Abdelhamide</a>
+                                        <ul>
+                                            <li><a href="#">Social Media Moderator: Samaa Mohamed Thabet</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Sales Representatives</a></li>
+                                </ul>
+                            </li>
+                            <!-- CHRO -->
+                            <li>
+                                <a href="#" onclick="toggleDetails('chro')">CHRO: Eyad Abdelazim Mohamed</a>
+                                <div id="chro" class="details">
+                                    <p>Phone: 01552565330</p>
+                                    <p>Email: Eyad_Abdelazim@sal7lyy.net</p>
+                                </div>
+                                <ul>
+                                    <li><a href="#">HR Director</a></li>
+                                    <li><a href="#">HR Specialist: Mahmoud Adel Dahy</a></li>
+                                </ul>
+                            </li>
+                            <!-- COO -->
+                            <li>
+                                <a href="#" onclick="toggleDetails('coo')">COO: Rafeek Mohamed Refeek</a>
+                                <ul>
+                                    <li><a href="#">Operations Manager</a></li>
+                                    <li><a href="#">Branch Coordinators</a></li>
+                                </ul>
+                            </li>
+                            <!-- CFO -->
+                            <li>
+                                <a href="#" onclick="toggleDetails('cfo')">CFO</a>
+                                <div id="cfo" class="details">
+                                    <h4>Finance Director</h4>
+                                    <h4>Finance Manager: Nadeen Hassan Mousa</h4>
+                                    <p>Phone: 01008947665</p>
+                                    <p>Email: nadeenhassan.acc@gmail.com</p>
+                                </div>
+                                <ul>
+                                    <li><a href="#">Finance Team</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-                <h4>Branch Coordinators</h4>
-                <ul class="branch-coordinator">
-                    <li>Sohag: Loai Adel AbdelMoniem Mohamed - Phone: 01009800331 - Email: loai.adel@hotmail.com</li>
-                    <li>Bani Suif: Ahmad Mohamed Kandeil - Phone: 01096786035 - Email: ahmad.kandeil95@gmail.com</li>
-                    <li>Qena: Mohammed Ashraf Obeid Elshazly - Phone: 01004231948 - Email: mohammed.ashraf.1617@gmail.com</li>
-                    <li>Minya: Mohammed Hamada Ahmed Abdelslam - Phone: 1090383823 - Email: muhammedhamada317@gmail.com</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Legal Affairs -->
-        <div class="department">
-            <h3 class="title">Legal Affairs</h3>
-            <p>External legal services.</p>
-        </div>
-
+            </li>
+        </ul>
     </div>
 
     <script>
