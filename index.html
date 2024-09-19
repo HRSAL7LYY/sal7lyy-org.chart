@@ -1,218 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizational Tree Chart</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #4a90e2;
-        }
-
-        .tree {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .tree ul {
-            padding-top: 20px;
-            position: relative;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        .tree li {
-            float: left;
-            text-align: center;
-            list-style-type: none;
-            position: relative;
-            padding: 20px 5px 0 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        /* Lines connecting the tree */
-        .tree li::before, .tree li::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 50%;
-            border-top: 2px solid #ccc;
-            width: 50%;
-            height: 20px;
-        }
-
-        .tree li::after {
-            right: auto;
-            left: 50%;
-            border-left: 2px solid #ccc;
-        }
-
-        .tree li:only-child::before, .tree li:only-child::after {
-            display: none;
-        }
-
-        .tree li:only-child {
-            padding-top: 0;
-        }
-
-        /* Vertical line */
-        .tree li li::before {
-            border-right: 2px solid #ccc;
-            border-top: none;
-            height: 100%;
-            top: 0;
-            right: 50%;
-        }
-
-        .tree li li::after {
-            border-left: 2px solid #ccc;
-            border-top: none;
-            height: 100%;
-            top: 0;
-            left: 50%;
-        }
-
-        .tree li a {
-            border: 2px solid #ccc;
-            padding: 10px;
-            text-decoration: none;
-            color: #4a90e2;
-            font-size: 14px;
-            display: inline-block;
-            border-radius: 5px;
-            transition: all 0.5s;
-        }
-
-        .tree li a:hover {
-            background: #f4f4f4;
-            color: #000;
-            border: 2px solid #4a90e2;
-        }
-
-        .details {
-            display: none;
-            font-size: 12px;
-            color: #333;
-        }
-
-        .details p {
-            margin: 5px 0;
-        }
-
-    </style>
+    <title>Organization Chart</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <h1>Organizational Tree Chart</h1>
+    <h1>Our Organization Structure</h1>
 
-    <div class="tree">
-        <ul>
-            <!-- Shareholders & Managing Partners -->
-            <li>
-                <a href="#" onclick="toggleDetails('ceo')">Shareholders & Managing Partners</a>
-                <ul>
-                    <!-- CEO -->
-                    <li>
-                        <a href="#" onclick="toggleDetails('ceo')">CEO: Ahmed Hassan Kenawy</a>
-                        <div id="ceo" class="details">
-                            <p>Phone: 1062101316</p>
-                            <p>Email: a.kenawy@sal7lyy.net</p>
-                        </div>
-                        <ul>
-                            <!-- CTO -->
-                            <li>
-                                <a href="#" onclick="toggleDetails('cto')">CTO: Farouk Omar</a>
-                                <div id="cto" class="details">
-                                    <p>Phone: 1145858641</p>
-                                    <p>Email: ***</p>
-                                </div>
-                                <ul>
-                                    <li><a href="#">Programmer</a></li>
-                                </ul>
-                            </li>
-                            <!-- CMO -->
-                            <li>
-                                <a href="#" onclick="toggleDetails('cmo')">CMO</a>
-                                <div id="cmo" class="details">
-                                    <h4>Head of Growth: Omar Emad Eldien Ali</h4>
-                                    <p>Phone: 01012269006</p>
-                                    <p>Email: omeremad30@gmail.com</p>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#">Marketing Manager: Nesrine Abdelhamide</a>
-                                        <ul>
-                                            <li><a href="#">Social Media Moderator: Samaa Mohamed Thabet</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Sales Representatives</a></li>
-                                </ul>
-                            </li>
-                            <!-- CHRO -->
-                            <li>
-                                <a href="#" onclick="toggleDetails('chro')">CHRO: Eyad Abdelazim Mohamed</a>
-                                <div id="chro" class="details">
-                                    <p>Phone: 01552565330</p>
-                                    <p>Email: Eyad_Abdelazim@sal7lyy.net</p>
-                                </div>
-                                <ul>
-                                    <li><a href="#">HR Director</a></li>
-                                    <li><a href="#">HR Specialist: Mahmoud Adel Dahy</a></li>
-                                </ul>
-                            </li>
-                            <!-- COO -->
-                            <li>
-                                <a href="#" onclick="toggleDetails('coo')">COO: Rafeek Mohamed Refeek</a>
-                                <ul>
-                                    <li><a href="#">Operations Manager</a></li>
-                                    <li><a href="#">Branch Coordinators</a></li>
-                                </ul>
-                            </li>
-                            <!-- CFO -->
-                            <li>
-                                <a href="#" onclick="toggleDetails('cfo')">CFO</a>
-                                <div id="cfo" class="details">
-                                    <h4>Finance Director</h4>
-                                    <h4>Finance Manager: Nadeen Hassan Mousa</h4>
-                                    <p>Phone: 01008947665</p>
-                                    <p>Email: nadeenhassan.acc@gmail.com</p>
-                                </div>
-                                <ul>
-                                    <li><a href="#">Finance Team</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+    <div class="org-chart">
+        <div class="level shareholders">
+            <h2>Shareholders & Managing Partners</h2>
+            <p>Mohamed Mansour, Mohamed Farouk, Ahmed Tarek Khalil, Abdullah Salam, Ahmed Al-Seweidy, Rafeek Mohamed Rafeek, Ahmed Hassan Kanawy</p>
+        </div>
+        
+        <div class="level">
+            <h2>CEO</h2>
+            <div class="info">
+                <strong>Ahmed Hassan Kenawy</strong><br>
+                Phone: 01062101316<br>
+                Email: <a href="mailto:a.kenawy@sal7lyy.net">a.kenawy@sal7lyy.net</a>
+            </div>
+        </div>
+
+        <!-- CTO -->
+        <div class="level">
+            <h2>CTO</h2>
+            <div class="info">
+                <strong>Farouk Omar</strong><br>
+                Phone: 01145858641<br>
+                Email: <a href="mailto:***">***</a>
+            </div>
+            <div class="sub-info">Programmer</div>
+        </div>
+
+        <!-- CMO -->
+        <div class="level">
+            <h2>CMO</h2>
+            <div class="info">
+                <strong>Omar Emad Eldien Ali</strong><br>
+                Phone: 01012269006<br>
+                Email: <a href="mailto:omeremad30@gmail.com">omeremad30@gmail.com</a>
+            </div>
+            <div class="sub-info">
+                <p><strong>Marketing Manager</strong>: Nesrine Abdelhamide<br>
+                   Phone: 01024855375<br>
+                   Email: <a href="mailto:nesrineabdelhamide@gmail.com">nesrineabdelhamide@gmail.com</a>
+                </p>
+                <p><strong>Social Media Moderator</strong>: Samaa Mohamed Thabet<br>
+                   Phone: 01157931166<br>
+                   Email: <a href="mailto:samaamohamed870@gmail.com">samaamohamed870@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Sales Representatives -->
+        <div class="level">
+            <h2>Sales Representatives</h2>
+            <div class="sub-info">
+                <p><strong>Supervisor</strong>: Shimaa Mohamed Mohamed<br>
+                   Phone: 01116843136<br>
+                   Email: <a href="mailto:shimaamohammed20300@gmail.com">shimaamohammed20300@gmail.com</a>
+                </p>
+                <p><strong>Rep</strong>: Aya Alaaeldin Ahmed<br>
+                   Phone: 01068096519<br>
+                   Email: <a href="mailto:ayaalaa12y4@gmail.com">ayaalaa12y4@gmail.com</a>
+                </p>
+                <p><strong>Rep</strong>: ميار مسعود منصور فرغلي<br>
+                   Phone: 01101062498<br>
+                   Email: <a href="mailto:mayaradel979@gmail.com">mayaradel979@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- CHRO -->
+        <div class="level">
+            <h2>CHRO</h2>
+            <div class="info">
+                <strong>Eyad Abdelazim Mohamed</strong><br>
+                Phone: 01552565330<br>
+                Email: <a href="mailto:Eyad_Abdelazim@sal7lyy.net">Eyad_Abdelazim@sal7lyy.net</a>
+            </div>
+            <div class="sub-info">
+                <p><strong>HR Specialist</strong>: Mahmoud Adel Dahy<br>
+                   Phone: 01064524279<br>
+                   Email: <a href="mailto:m.dahy@Sal7lyy.net">m.dahy@Sal7lyy.net</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- CFO -->
+        <div class="level">
+            <h2>CFO</h2>
+            <div class="sub-info">
+                <p><strong>Finance Manager</strong>: Nadeen Hassan Mousa<br>
+                   Phone: 01008947665<br>
+                   Email: <a href="mailto:nadeenhassan.acc@gmail.com">nadeenhassan.acc@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- COO -->
+        <div class="level">
+            <h2>COO</h2>
+            <div class="info">
+                <strong>Rafeek Mohamed Rafeek</strong>
+            </div>
+            <div class="sub-info">
+                <p><strong>Operation Engineers</strong><br>
+                   1. Ahmed Sayed Bader - Phone: 01020348986 - Email: <a href="mailto:ahmedgentalbadr@gmail.com">ahmedgentalbadr@gmail.com</a><br>
+                   2. Abdelrahman Osama Sayed Ahmed - Phone: 01002369512 - Email: <a href="mailto:abdelrahmanosama794@gmail.com">abdelrahmanosama794@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Customer Relations -->
+        <div class="level">
+            <h2>Customer Relations</h2>
+            <div class="sub-info">
+                <p><strong>CRM Agent</strong>: Asmaa Mohamed Abdal<br>
+                   Phone: 01153686180<br>
+                   Email: <a href="mailto:mohamedasmaa719@gmail.com">mohamedasmaa719@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Customer Support -->
+        <div class="level">
+            <h2>Customer Support</h2>
+            <div class="sub-info">
+                <p><strong>Supervisor</strong>: Radwaa Younes<br>
+                   Phone: 01021138027<br>
+                   Email: <a href="mailto:radwayounes64@gmail.com">radwayounes64@gmail.com</a>
+                </p>
+                <p><strong>Support Agents</strong><br>
+                   1. Alaa Refaat - Phone: 01096964159 - Email: <a href="mailto:alaarefaat285@gmail.com">alaarefaat285@gmail.com</a><br>
+                   2. دعاء حنفي حامد محمد ريان - Phone: 01060401629 - Email: <a href="mailto:doaahanafi28@gmail.com">doaahanafi28@gmail.com</a>
+                </p>
+            </div>
+        </div>
     </div>
 
-    <script>
-        function toggleDetails(id) {
-            var details = document.getElementById(id);
-            if (details.style.display === "block") {
-                details.style.display = "none";
-            } else {
-                details.style.display = "block";
-            }
-        }
-    </script>
-
 </body>
-
 </html>
